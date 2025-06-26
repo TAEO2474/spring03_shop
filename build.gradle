@@ -33,8 +33,15 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
 
+	//spring security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	
+	//jwt
+	implementation("com.auth0:java-jwt:4.5.0")
+}
+	
+	
 tasks.named('test') {
 	useJUnitPlatform()
 }
