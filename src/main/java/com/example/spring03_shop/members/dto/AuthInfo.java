@@ -7,7 +7,7 @@ import lombok.ToString;
 @Builder
 @ToString
 @Getter
-// 로그인 성공 후 인증 상태 정보를 세션ㄴ에 보관할 때 사용
+// 로그인 성공 후 인증 상태 정보를 세션에 보관할 때 사용
 public class AuthInfo {
 	
 	private String memberEmail;

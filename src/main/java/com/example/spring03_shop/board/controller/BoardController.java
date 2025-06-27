@@ -32,8 +32,9 @@ import com.example.spring03_shop.common.file.FileUpload;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
+
+//@CrossOrigin("*")
 @Slf4j
-@CrossOrigin("*")
 @RestController
 public class BoardController {
 	@Autowired

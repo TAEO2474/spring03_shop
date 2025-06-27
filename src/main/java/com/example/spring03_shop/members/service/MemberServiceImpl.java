@@ -1,8 +1,10 @@
 package com.example.spring03_shop.members.service;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.spring03_shop.member.entity.MembersEntity;
 import com.example.spring03_shop.members.dto.AuthInfo;
 import com.example.spring03_shop.members.dto.ChangePwdCommand;
 import com.example.spring03_shop.members.dto.MembersDTO;
@@ -31,8 +33,8 @@ public class MemberServiceImpl  implements  MembersService{
 	}
 	@Override
 	public MembersDTO getByMemberProcess(String memberEmail) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<MembersEntity> optMembersEntity = membersRepository.findById(memberEmail);
+		return MembersDTO.toDTO(optMembersEntity.get());
 	}
 	@Override
 	public AuthInfo updateMemberProcess(MembersDTO dto) {
@@ -48,6 +50,7 @@ public class MemberServiceImpl  implements  MembersService{
 	public void deleteMemberProcess(String memberEmail) {
 		// TODO Auto-generated method stub
 		
-	}	
+	}
+		
 
 }
