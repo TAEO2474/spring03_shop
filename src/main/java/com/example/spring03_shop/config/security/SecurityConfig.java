@@ -14,10 +14,30 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfigurationSource;
-
 import com.example.spring03_shop.config.jwt.JwtAuthenticationFilter;
 import com.example.spring03_shop.members.repository.MemberRepository;
+//<Spring Security 보안 설정을 담당하는 핵심 구성 클래스>
+// [1]CSRF 보호 비활성화
+//→ REST API 방식이므로 사용하지 않음.
 
+// [2] CORS 정책 설정
+//→ 다른 도메인에서 요청이 가능하도록 허용 (프론트엔드-백엔드 분리 시 중요)
+
+//[3] 폼 로그인 비활성화
+//→ formLogin.disable() → 우리가 직접 로그인 로직을 구현(JWT 방식)
+
+//[4]세션 끄기
+//→ JWT 방식이므로 서버는 로그인 상태를 세션에 저장하지 않음
+//→ stateless 설정
+
+//[5]요청 URL 권한 설정
+//→ 일부 URL은 permitAll() (인증 없이 접근 가능)
+//→ 나머지 URL은 authenticated() (로그인 필요)
+
+//[6]JWT 인증 필터 등록
+//→ JwtAuthenticationFilter 를 Security FilterChain에 등록
+//→ 로그인 시 토큰을 발급해주는 역할
+///////////////////////////////////////////////////////////////////////////////////////
 // 해당 클래스를 Configuration으로 등록: 환경설정
 // Configuration (구성,설정) : 앱이 어떤 포트를 사용할지, 데이터베이스 연결 정보, 보안 정책 등
 @Configuration
@@ -25,7 +45,6 @@ import com.example.spring03_shop.members.repository.MemberRepository;
 @EnableWebSecurity // Spring Security가 Spring FileChain에 등록함 (즉 스프링 시큐리티를 활성화함)
 //메소드 수준에서 보안을 활성화한다. 이를 통해 @PreAuthorize나 @PostAuthorize를 사용하여 메소드 실행 전후에 인증 및 권한 체크를 추가할 수 있다.
 @EnableMethodSecurity(prePostEnabled = true)
-
 public class SecurityConfig {
 
 	@Autowired
